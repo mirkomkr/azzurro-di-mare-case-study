@@ -1,0 +1,64 @@
+:root {
+  color-scheme: light;
+
+  /* Color */
+  --color-petrol: #123c4a;
+  --color-navy: #0b2630;
+  --color-sand: #f7f1e8;
+  --color-sand-alt: #efe4d3;
+  --color-gold: #c99a5b;
+  --color-coral: #b96a50;
+  --color-coral-text: #934a37;
+  --color-text: #1e2529;
+  --color-text-muted: #5f6b70;
+  --color-white: #ffffff;
+
+  --color-background: var(--color-sand);
+  --color-surface: var(--color-white);
+  --color-heading: var(--color-navy);
+  --color-link: var(--color-petrol);
+  --color-focus: var(--color-coral);
+
+  /* Typography */
+  --font-heading: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1.0625rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --font-size-2xl: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-body: 1.6;
+  --line-height-heading: 1.15;
+
+  /* Layout and spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-section: clamp(3.5rem, 8vw, 7rem);
+
+  --container-max: 75rem;
+  --container-gutter: clamp(1rem, 4vw, 2rem);
+  --flow-space: var(--space-4);
+  --touch-target-min: 2.75rem;
+
+  /* Shape and effects */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --shadow-soft: 0 0.5rem 1.5rem rgb(11 38 48 / 10%);
+  --focus-ring:
+    0 0 0 0.15rem var(--color-white),
+    0 0 0 0.35rem var(--color-navy);
+  --transition-fast: 160ms ease;
+}

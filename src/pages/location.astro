@@ -1,0 +1,238 @@
+---
+import { Image } from "astro:assets";
+import DemoNotice from "../components/DemoNotice.astro";
+import locationImage from "../assets/images/ristorante-demo/location/costa-anzio-nettuno-demo.webp";
+import { imagePlaceholdersById } from "../data/imagePlaceholders.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const location = imagePlaceholdersById["location-costa"];
+---
+
+<BaseLayout
+  title="Location demo tra Anzio e Nettuno"
+  description="Pagina location dimostrativa per un sito ristorante: contesto locale tra Anzio e Nettuno, senza indirizzo reale o dati commerciali inventati."
+>
+  <header class="content-hero">
+    <div class="content-hero__inner container">
+      <div class="content-hero__content flow">
+        <p class="eyebrow">Contesto locale dimostrativo</p>
+        <h1>Un caso studio ispirato al territorio tra Anzio e Nettuno</h1>
+        <p class="content-hero__lead">
+          La costa laziale fornisce un contesto narrativo e SEO al progetto,
+          senza rappresentare la sede reale di un ristorante.
+        </p>
+      </div>
+      <Image
+        class="content-hero__image"
+        src={locationImage}
+        alt={location.alt}
+        widths={[640, 800, 960, 1280]}
+        sizes="(min-width: 48rem) 48vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </header>
+
+  <div class="demo-strip container">
+    <DemoNotice headingId="location-demo-notice-title" />
+  </div>
+
+  <section class="section" aria-labelledby="context-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Anzio e Nettuno</p>
+      <h2 id="context-title">Un riferimento territoriale, non un indirizzo</h2>
+      <p class="section__lead">
+        Il progetto usa Anzio e Nettuno come scenario plausibile per studiare i
+        contenuti di un sito ristorante locale. I riferimenti alla costa aiutano
+        a definire tono, immagini e intenzione di ricerca.
+      </p>
+      <p>
+        Azzurro di Mare resta però un’attività fittizia: non esiste una sede da
+        raggiungere e non vengono pubblicati dati commerciali inventati.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="local-title">
+    <div class="feature-grid container">
+      <div class="feature-card flow">
+        <p class="eyebrow">SEO locale corretta</p>
+        <h2 id="local-title">Perché il territorio conta in un sito locale</h2>
+        <p>
+          Una pagina location efficace collega contenuti, contesto geografico e
+          bisogni dell’utente. Nel caso studio questi elementi mostrano una
+          strategia possibile senza fingere una presenza fisica.
+        </p>
+      </div>
+
+      <div class="feature-card flow">
+        <p class="eyebrow">Scelta rapida</p>
+        <h2 id="mobile-title">Informazioni chiare da smartphone</h2>
+        <p>
+          Chi consulta un sito locale da mobile cerca risposte immediate.
+          Gerarchia, testi brevi e call to action comprensibili riducono il
+          carico cognitivo anche in un percorso dimostrativo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="transparency-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Trasparenza</p>
+      <h2 id="transparency-title">Nessuna mappa finta, nessun dato inventato</h2>
+      <p class="section__lead">
+        Questa pagina non include indirizzo, telefono, orari o indicazioni
+        stradali perché il ristorante non esiste. La scelta protegge chiarezza,
+        fiducia e correttezza del caso studio.
+      </p>
+      <p>
+        Il focus resta sul modo in cui una pagina location potrebbe organizzare
+        contenuti locali accessibili e utili quando i dati reali saranno
+        disponibili.
+      </p>
+    </div>
+  </section>
+
+  <section class="location-actions section" aria-labelledby="actions-title">
+    <div class="location-actions__inner container flow">
+      <p class="eyebrow eyebrow--light">Continua il percorso demo</p>
+      <h2 id="actions-title">Esplora strategia e interazione</h2>
+      <p>
+        Approfondisci le scelte di SEO locale nel caso studio oppure prova il
+        percorso di prenotazione simulato.
+      </p>
+      <div class="button-group">
+        <a class="button button--light" href="/caso-studio/">
+          Leggi il caso studio
+        </a>
+        <a class="button button--outline-light" href="/prenotazione/">
+          Prova la prenotazione demo
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .content-hero,
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .content-hero {
+    padding-block-start: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .content-hero__inner,
+  .feature-grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .content-hero__content {
+    align-self: center;
+  }
+
+  .content-hero__lead,
+  .section__lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .content-hero__image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .demo-strip {
+    margin-block-end: var(--space-8);
+  }
+
+  .narrow,
+  .location-actions__inner {
+    max-width: 52rem;
+  }
+
+  .section--surface {
+    background-color: var(--color-surface);
+  }
+
+  .feature-card {
+    padding: clamp(var(--space-6), 5vw, var(--space-12));
+    border: 1px solid var(--color-sand-alt);
+    border-radius: var(--radius-md);
+    background-color: var(--color-background);
+  }
+
+  .eyebrow {
+    color: var(--color-coral-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--light {
+    color: var(--color-sand-alt);
+  }
+
+  .location-actions {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .location-actions h2 {
+    color: var(--color-white);
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border: 0.125rem solid var(--color-white);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+  }
+
+  .button--light {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .button--outline-light {
+    background-color: transparent;
+    color: var(--color-white);
+  }
+
+  @media (min-width: 48rem) {
+    .content-hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(var(--space-8), 6vw, var(--space-16));
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

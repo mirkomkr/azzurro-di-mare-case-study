@@ -1,0 +1,33 @@
+---
+interface Props {
+  headingId?: string;
+}
+
+const { headingId = "demo-notice-title" } = Astro.props;
+---
+
+<aside class="demo-notice" aria-labelledby={headingId}>
+  <h2 class="demo-notice__title" id={headingId}>Nota sul progetto demo</h2>
+  <p>
+    Questo sito è un progetto dimostrativo realizzato da Mirko Passeri come caso
+    studio frontend, SEO e accessibilità. Il ristorante è fittizio e non accetta
+    prenotazioni reali.
+  </p>
+</aside>
+
+<style>
+  .demo-notice {
+    padding: var(--space-4);
+    border-inline-start: 0.25rem solid var(--color-gold);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-sand-alt);
+    color: var(--color-text);
+  }
+
+  .demo-notice__title {
+    margin-block-end: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+  }
+</style>

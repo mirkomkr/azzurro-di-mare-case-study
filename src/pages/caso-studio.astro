@@ -1,0 +1,558 @@
+---
+import { Image } from "astro:assets";
+import bookingImage from "../assets/images/ristorante-demo/booking/tavolo-prenotazione-demo.webp";
+import heroImage from "../assets/images/ristorante-demo/hero/hero-ristorante-pesce-anzio-nettuno.webp";
+import menuImage from "../assets/images/ristorante-demo/menu/spaghetti-cozze-e-pescato-griglia-demo.webp";
+import DemoNotice from "../components/DemoNotice.astro";
+import { imagePlaceholdersById } from "../data/imagePlaceholders.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const images = {
+  hero: imagePlaceholdersById["home-hero"],
+  menu: imagePlaceholdersById["menu-overview"],
+  booking: imagePlaceholdersById["booking-table"],
+};
+
+const sitePages = [
+  { href: "/", name: "Home", description: "Presenta identità, obiettivi e percorsi principali." },
+  { href: "/menu/", name: "Menu", description: "Organizza piatti e prezzi come contenuto HTML accessibile." },
+  { href: "/ristorante/", name: "Il ristorante", description: "Racconta concept e identità senza fingere un’attività reale." },
+  { href: "/location/", name: "Location", description: "Usa Anzio e Nettuno come contesto locale del caso studio." },
+  { href: "/prenotazione/", name: "Prenotazione demo", description: "Simula un flusso interattivo senza inviare o salvare dati." },
+  { href: "/crediti-immagini/", name: "Crediti immagini", description: "Documenta fonti, autori e licenze degli asset locali." },
+  { href: "/note-demo-privacy/", name: "Note demo e privacy", description: "Chiarisce finalità dimostrativa e trattamento dei dati." },
+];
+
+const futureEvolutions = [
+  "Collegamento a email o sistema di notifica reale.",
+  "Integrazione con un gestionale prenotazioni.",
+  "CMS leggero per menu e contenuti.",
+  "Backend e servizi esterni scelti in base ai requisiti.",
+  "Report periodici su performance e visibilità organica.",
+  "Audit continuativi di SEO e accessibilità.",
+];
+---
+
+<BaseLayout
+  title="Caso studio sito ristorante Anzio e Nettuno"
+  description="Caso studio frontend, accessibilità, SEO locale e performance per un sito vetrina demo dedicato a un ristorante di pesce tra Anzio e Nettuno."
+>
+  <header class="study-hero">
+    <div class="study-hero__inner container">
+      <div class="study-hero__content flow">
+        <p class="eyebrow">Strategia, frontend e contenuti</p>
+        <h1>Caso studio: sito vetrina per ristorante di pesce tra Anzio e Nettuno</h1>
+        <p class="study-hero__lead">
+          Un progetto dimostrativo che mostra come progettare un sito ristorante
+          chiaro da mobile, accessibile, veloce e credibile per un’attività
+          locale.
+        </p>
+        <div class="button-group">
+          <a class="button button--primary" href="/prenotazione/">
+            Prova la prenotazione demo
+          </a>
+          <a class="button button--secondary" href="/menu/">
+            Esplora il menu testuale
+          </a>
+        </div>
+      </div>
+      <Image
+        class="study-hero__image"
+        src={heroImage}
+        alt={images.hero.alt}
+        widths={[640, 800, 960, 1440]}
+        sizes="(min-width: 64rem) 50vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </header>
+
+  <div class="demo-strip container">
+    <DemoNotice headingId="case-study-demo-notice-title" />
+  </div>
+
+  <section class="section" aria-labelledby="objective-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Obiettivo del progetto</p>
+      <h2 id="objective-title">Dimostrare un processo completo, non soltanto una vetrina</h2>
+      <p class="section__lead">
+        Azzurro di Mare nasce per mostrare progettazione frontend, accessibilità,
+        SEO tecnico e locale, contenuti, performance e UX all’interno di un sito
+        coerente.
+      </p>
+      <p>
+        Il concept ristorante rende il caso studio concreto per ristoratori,
+        attività locali, agenzie e collaboratori, mantenendo sempre evidente che
+        non esiste un’attività commerciale reale.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="clarity-title">
+    <div class="feature-grid container">
+      <article class="feature-card flow">
+        <p class="eyebrow">Problema</p>
+        <h2 id="clarity-title">Perché un ristorante locale ha bisogno di chiarezza</h2>
+        <p>
+          Gran parte della consultazione avviene da smartphone. Menu difficili da
+          leggere, contenuti vaghi e percorsi confusi aumentano gli attriti prima
+          del contatto o della prenotazione.
+        </p>
+      </article>
+      <article class="feature-card flow">
+        <p class="eyebrow">Direzione</p>
+        <h2 id="trust-title">Contenuti che costruiscono fiducia</h2>
+        <p>
+          Una gerarchia prevedibile, testi comprensibili e CTA esplicite aiutano
+          l’utente a orientarsi. Nel caso studio, la stessa chiarezza serve anche
+          a distinguere esperienza realistica e finalità dimostrativa.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="structure-title">
+    <div class="container flow">
+      <div class="narrow flow">
+        <p class="eyebrow">Architettura informativa</p>
+        <h2 id="structure-title">Una struttura breve, con uno scopo per ogni pagina</h2>
+        <p>
+          Le route coprono i bisogni principali di un sito vetrina locale e
+          documentano apertamente asset e comportamento demo.
+        </p>
+      </div>
+      <ul class="page-grid" aria-label="Pagine incluse nel caso studio">
+        {
+          sitePages.map((page) => (
+            <li>
+              <a class="page-card flow" href={page.href}>
+                <h3>{page.name}</h3>
+                <p>{page.description}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="ux-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Scelte UX</p>
+      <h2 id="ux-title">Ridurre il carico, rendere evidenti i percorsi</h2>
+      <p class="section__lead">
+        Navigazione semplice, CTA descrittive e contenuti brevi guidano l’utente
+        senza richiedere interazioni complesse.
+      </p>
+      <ul class="check-list">
+        <li>Approccio mobile-first e target touch comodi.</li>
+        <li>Nessun carousel, video hero o animazione pesante.</li>
+        <li>Informazioni essenziali disponibili senza dipendere dalle immagini.</li>
+        <li>Componenti interattivi introdotti solo quando aggiungono valore.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="media-section section" aria-labelledby="menu-title">
+    <div class="media-section__inner container">
+      <Image
+        class="media-section__image"
+        src={menuImage}
+        alt={images.menu.alt}
+        widths={[480, 720, 800, 960]}
+        sizes="(min-width: 48rem) 42vw, 100vw"
+        loading="lazy"
+      />
+      <div class="media-section__content flow">
+        <p class="eyebrow">Menu accessibile</p>
+        <h2 id="menu-title">Quattro categorie e sedici piatti come HTML reale</h2>
+        <p>
+          Il menu non è una fotografia o un PDF. Nomi e prezzi sono associati
+          semanticamente, leggibili da screen reader e disponibili anche se le
+          immagini non vengono caricate.
+        </p>
+        <p>
+          Le fotografie accompagnano antipasti, primi e secondi, ma non
+          sostituiscono mai l’informazione testuale.
+        </p>
+        <a class="text-link" href="/menu/">Verifica la struttura del menu demo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="media-section section section--surface" aria-labelledby="booking-title">
+    <div class="media-section__inner media-section__inner--reverse container">
+      <Image
+        class="media-section__image"
+        src={bookingImage}
+        alt={images.booking.alt}
+        widths={[640, 800, 960, 1200]}
+        sizes="(min-width: 48rem) 45vw, 100vw"
+        loading="lazy"
+      />
+      <div class="media-section__content flow">
+        <p class="eyebrow">Prenotazione demo</p>
+        <h2 id="booking-title">Vue isolato dove serve davvero</h2>
+        <p>
+          Il form Vue è presente soltanto in <a href="/prenotazione/">/prenotazione/</a>
+          e viene idratato quando entra nel viewport. Non utilizza backend, API,
+          email o persistenza locale.
+        </p>
+        <p>
+          Validazione frontend, errori associati, focus sul primo errore,
+          aria-live e conferma finale mostrano un flusso accessibile senza
+          registrare una prenotazione reale.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="accessibility-title">
+    <div class="container flow">
+      <div class="narrow flow">
+        <p class="eyebrow">Accessibilità</p>
+        <h2 id="accessibility-title">Una base utilizzabile con mouse, touch, tastiera e tecnologie assistive</h2>
+      </div>
+      <div class="metric-grid">
+        <article class="metric-card flow">
+          <h3>Struttura semantica</h3>
+          <p>Un H1 per pagina, heading ordinati, landmark, skip link e contenuti HTML reali.</p>
+        </article>
+        <article class="metric-card flow">
+          <h3>Interazione chiara</h3>
+          <p>Focus visibile, link descrittivi, target touch e supporto a prefers-reduced-motion.</p>
+        </article>
+        <article class="metric-card flow">
+          <h3>Form accessibile</h3>
+          <p>Label visibili, errori collegati ai campi, tastiera, aria-live e focus management.</p>
+        </article>
+        <article class="metric-card flow">
+          <h3>Immagini comprensibili</h3>
+          <p>Alt text centralizzati e nessuna informazione importante affidata solo alle fotografie.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="technical-seo-title">
+    <div class="feature-grid container">
+      <article class="feature-card flow">
+        <p class="eyebrow">SEO tecnico</p>
+        <h2 id="technical-seo-title">Metadati coerenti e contenuti indicizzabili</h2>
+        <p>
+          Il componente interno <code>SEO.astro</code> centralizza title,
+          description, canonical, Open Graph e robots opzionale. Sitemap e
+          canonical usano il dominio configurato in Astro.
+        </p>
+        <p>
+          Ogni pagina ha contenuto HTML reale e intento distinto, senza keyword
+          stuffing o dipendenze SEO esterne.
+        </p>
+      </article>
+      <article class="feature-card flow">
+        <p class="eyebrow">SEO locale corretta</p>
+        <h2 id="local-seo-title">Anzio e Nettuno come contesto, non come sede</h2>
+        <p>
+          Il territorio definisce scenario e intento professionale del caso
+          studio. Non vengono inventati indirizzo, telefono, orari, mappa,
+          Google Business Profile o recensioni.
+        </p>
+        <p>
+          Non sono presenti schema Restaurant, LocalBusiness, Review o
+          AggregateRating.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="performance-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Performance</p>
+      <h2 id="performance-title">Obiettivi misurabili, risultati non inventati</h2>
+      <p class="section__lead">
+        Gli obiettivi futuri sono almeno 95 per Performance, Accessibility, Best
+        Practices e SEO in Lighthouse. Questi punteggi non vengono dichiarati
+        come raggiunti finché non saranno misurati sul deploy finale.
+      </p>
+      <ul class="check-list">
+        <li>La Home generata pesa circa 16 KB di HTML e non carica JavaScript.</li>
+        <li>Vue è isolato esclusivamente nella pagina prenotazione.</li>
+        <li>Le immagini responsive sono generate da Astro con srcset e sizes.</li>
+        <li>CSS scoped, nessun carousel, nessun video hero e nessuna animazione pesante.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="images-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Immagini responsive</p>
+      <h2 id="images-title">Asset locali, ottimizzati e documentati</h2>
+      <p class="section__lead">
+        Le immagini WebP sono state ottimizzate manualmente con Squoosh e
+        conservate in <code>src/assets/images/ristorante-demo/</code>.
+      </p>
+      <p>
+        <code>astro:assets</code> genera varianti responsive con srcset, sizes,
+        width e height per ridurre CLS e trasferire dimensioni adeguate. Nessuna
+        immagine remota viene usata nel sito.
+      </p>
+      <a class="text-link" href="/crediti-immagini/">
+        Consulta fonti e crediti delle immagini
+      </a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="measurement-title">
+    <div class="feature-grid container">
+      <article class="feature-card flow">
+        <p class="eyebrow">Misurazione futura</p>
+        <h2 id="measurement-title">Google Search Console dopo deploy e indicizzazione</h2>
+        <p>
+          In una fase successiva sarà possibile monitorare impression, click,
+          query, CTR, pagine indicizzate e ricerche legate al caso studio o al
+          contesto locale.
+        </p>
+        <p>Nessun dato Search Console è attualmente dichiarato o simulato.</p>
+      </article>
+      <article class="feature-card flow">
+        <p class="eyebrow">Evoluzioni per un cliente reale</p>
+        <h2 id="evolutions-title">Dalla demo a un prodotto operativo</h2>
+        <ul class="check-list">
+          {futureEvolutions.map((evolution) => <li>{evolution}</li>)}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="final-cta section" aria-labelledby="final-cta-title">
+    <div class="final-cta__inner container flow">
+      <p class="eyebrow eyebrow--light">Esplora il progetto</p>
+      <h2 id="final-cta-title">Verifica contenuti, interazione e trasparenza</h2>
+      <p>
+        Ogni pagina mostra una parte distinta del processo: dalla struttura del
+        menu alla prenotazione simulata, fino alla documentazione degli asset e
+        delle note demo.
+      </p>
+      <div class="button-group">
+        <a class="button button--light" href="/prenotazione/">Prova la prenotazione demo</a>
+        <a class="button button--outline-light" href="/menu/">Esplora il menu demo</a>
+        <a class="button button--outline-light" href="/crediti-immagini/">Consulta i crediti immagini</a>
+        <a class="button button--outline-light" href="/note-demo-privacy/">Leggi note demo e privacy</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .study-hero,
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .study-hero {
+    padding-block-start: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .study-hero__inner,
+  .media-section__inner,
+  .feature-grid,
+  .metric-grid,
+  .page-grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .study-hero__content,
+  .media-section__content {
+    align-self: center;
+  }
+
+  .study-hero__lead,
+  .section__lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .study-hero__image,
+  .media-section__image {
+    width: 100%;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .study-hero__image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .media-section__image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .demo-strip {
+    margin-block-end: var(--space-8);
+  }
+
+  .narrow,
+  .final-cta__inner {
+    max-width: 52rem;
+  }
+
+  .section--surface {
+    background-color: var(--color-surface);
+  }
+
+  .feature-card,
+  .metric-card,
+  .page-card {
+    padding: clamp(var(--space-6), 4vw, var(--space-8));
+    border: 1px solid var(--color-sand-alt);
+    border-radius: var(--radius-md);
+    background-color: var(--color-background);
+  }
+
+  .page-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .page-card {
+    display: block;
+    height: 100%;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .page-card:hover {
+    border-color: var(--color-petrol);
+    text-decoration: underline;
+    text-decoration-thickness: 0.12rem;
+  }
+
+  .page-card h3 {
+    color: var(--color-heading);
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .metric-card {
+    background-color: var(--color-surface);
+  }
+
+  .metric-card h3 {
+    font-family: var(--font-body);
+    font-size: var(--font-size-lg);
+  }
+
+  .check-list {
+    display: grid;
+    gap: var(--space-3);
+    padding-inline-start: var(--space-6);
+  }
+
+  .check-list li::marker {
+    color: var(--color-coral);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .eyebrow {
+    color: var(--color-coral-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--light {
+    color: var(--color-sand-alt);
+  }
+
+  code {
+    padding: 0.1em 0.25em;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-sand-alt);
+    font-size: 0.9em;
+    overflow-wrap: anywhere;
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .button,
+  .text-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .button {
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border: 0.125rem solid var(--color-petrol);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover,
+  .text-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+  }
+
+  .button--primary {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .button--secondary {
+    background-color: transparent;
+    color: var(--color-petrol);
+  }
+
+  .final-cta {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .final-cta h2 {
+    color: var(--color-white);
+  }
+
+  .button--light {
+    border-color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .button--outline-light {
+    border-color: var(--color-white);
+    background-color: transparent;
+    color: var(--color-white);
+  }
+
+  @media (min-width: 48rem) {
+    .study-hero__inner,
+    .media-section__inner,
+    .feature-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+      gap: clamp(var(--space-8), 6vw, var(--space-16));
+    }
+
+    .media-section__inner--reverse .media-section__image {
+      grid-column: 2;
+    }
+
+    .media-section__inner--reverse .media-section__content {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+</style>

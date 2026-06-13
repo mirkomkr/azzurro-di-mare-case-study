@@ -1,0 +1,100 @@
+---
+import { primaryNavigation, projectNavigation } from "../data/navigation.js";
+import DemoNotice from "./DemoNotice.astro";
+
+const currentPath = Astro.url.pathname;
+const isCurrentPage = (href) =>
+  href === "/" ? currentPath === href : currentPath.startsWith(href);
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+    <DemoNotice headingId="footer-demo-notice-title" />
+
+    <div class="site-footer__links">
+      <nav aria-label="Link principali">
+        <h2 class="site-footer__heading">Esplora</h2>
+        <ul class="site-footer__list">
+          {
+            primaryNavigation.map(({ href, label }) => (
+              <li>
+                <a
+                  href={href}
+                  aria-current={isCurrentPage(href) ? "page" : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Informazioni sul progetto">
+        <h2 class="site-footer__heading">Il progetto</h2>
+        <ul class="site-footer__list">
+          {
+            projectNavigation.map(({ href, label }) => (
+              <li>
+                <a
+                  href={href}
+                  aria-current={isCurrentPage(href) ? "page" : undefined}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <p class="site-footer__copyright">
+      &copy; {new Date().getFullYear()} Mirko Passeri. Progetto dimostrativo.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: auto;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-8);
+    padding-block: var(--space-12);
+  }
+
+  .site-footer__links {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .site-footer__heading {
+    margin-block-end: var(--space-3);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+  }
+
+  .site-footer__list {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .site-footer a {
+    display: inline-flex;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    color: var(--color-white);
+  }
+
+  .site-footer__copyright {
+    color: var(--color-sand-alt);
+    font-size: var(--font-size-sm);
+  }
+</style>

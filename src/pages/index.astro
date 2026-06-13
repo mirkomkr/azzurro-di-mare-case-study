@@ -1,17 +1,354 @@
 ---
+import { Image } from "astro:assets";
+import DemoNotice from "../components/DemoNotice.astro";
+import atmosphereImage from "../assets/images/ristorante-demo/atmosphere/tavolo-ristorante-mediterraneo-demo.webp";
+import heroImage from "../assets/images/ristorante-demo/hero/hero-ristorante-pesce-anzio-nettuno.webp";
+import locationImage from "../assets/images/ristorante-demo/location/costa-anzio-nettuno-demo.webp";
+import menuImage from "../assets/images/ristorante-demo/menu/spaghetti-cozze-e-pescato-griglia-demo.webp";
+import ogImage from "../assets/images/ristorante-demo/og/azzurro-di-mare-og.webp";
+import { imagePlaceholdersById } from "../data/imagePlaceholders.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const images = {
+  hero: imagePlaceholdersById["home-hero"],
+  menu: imagePlaceholdersById["menu-overview"],
+  atmosphere: imagePlaceholdersById["atmosphere-table"],
+  location: imagePlaceholdersById["location-costa"],
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Azzurro di Mare | Sito demo per ristorante di pesce tra Anzio e Nettuno"
+  description="Caso studio frontend, SEO e accessibilità per un sito vetrina demo dedicato a un ristorante di pesce tra Anzio e Nettuno."
+  image={ogImage.src}
+>
+  <section class="hero">
+    <div class="hero__inner container">
+      <div class="hero__content flow">
+        <p class="eyebrow">Caso studio frontend per attività locali</p>
+        <h1>
+          Azzurro di Mare: sito demo per un ristorante di pesce tra Anzio e
+          Nettuno
+        </h1>
+        <p class="hero__lead">
+          Un progetto dimostrativo che racconta come potrebbe essere strutturato
+          un sito ristorante moderno, veloce, accessibile e chiaro.
+        </p>
+        <div class="button-group">
+          <a class="button button--primary" href="/menu/">Scopri il menu demo</a>
+          <a class="button button--secondary" href="/caso-studio/">
+            Vai al caso studio
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__media">
+        <Image
+          class="hero__image"
+          src={heroImage}
+          alt={images.hero.alt}
+          widths={[640, 800, 960, 1440, 1920]}
+          sizes="(min-width: 64rem) 50vw, 100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="demo-strip container">
+    <DemoNotice headingId="home-demo-notice-title" />
+  </div>
+
+  <section class="section section--intro" aria-labelledby="concept-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Il concept</p>
+      <h2 id="concept-title">Un’identità mediterranea costruita per il web</h2>
+      <p class="section__lead">
+        Azzurro di Mare immagina un ristorante di pesce nel contesto costiero tra
+        Anzio e Nettuno. Il progetto traduce atmosfera, menu e informazioni
+        essenziali in un’esperienza digitale credibile, senza presentare
+        l’attività fittizia come realmente operativa.
+      </p>
+      <p>
+        La struttura privilegia contenuti leggibili, percorsi semplici e segnali
+        chiari per mostrare a ristoratori, attività locali e agenzie il valore di
+        un sito progettato con attenzione.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="menu-preview-title">
+    <div class="split container">
+      <div class="split__media">
+        <Image
+          class="section-image section-image--portrait"
+          src={menuImage}
+          alt={images.menu.alt}
+          widths={[480, 720, 800, 960]}
+          sizes="(min-width: 48rem) 45vw, 100vw"
+          loading="lazy"
+        />
+      </div>
+      <div class="split__content flow">
+        <p class="eyebrow">Preview menu</p>
+        <h2 id="menu-preview-title">Piatti di mare presentati con chiarezza</h2>
+        <p>
+          La futura pagina menu organizzerà antipasti, primi e secondi di mare
+          con testi leggibili, immagini pertinenti e informazioni facili da
+          consultare anche da smartphone.
+        </p>
+        <a class="text-link" href="/menu/">Esplora il menu dimostrativo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="experience-title">
+    <div class="split split--reverse container">
+      <div class="split__media">
+        <Image
+          class="section-image section-image--portrait"
+          src={atmosphereImage}
+          alt={images.atmosphere.alt}
+          widths={[480, 720, 800, 960]}
+          sizes="(min-width: 48rem) 45vw, 100vw"
+          loading="lazy"
+        />
+      </div>
+      <div class="split__content flow">
+        <p class="eyebrow">Esperienza e atmosfera</p>
+        <h2 id="experience-title">Una narrazione visiva sobria e concreta</h2>
+        <p>
+          Colori mediterranei, fotografia editoriale e una gerarchia
+          tipografica netta costruiscono un’atmosfera riconoscibile senza
+          ricorrere a effetti pesanti o claim commerciali inventati.
+        </p>
+        <a class="text-link" href="/ristorante/">
+          Scopri il concept del ristorante demo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="location-title">
+    <div class="split container">
+      <div class="split__media">
+        <Image
+          class="section-image"
+          src={locationImage}
+          alt={images.location.alt}
+          widths={[640, 800, 960, 1280]}
+          sizes="(min-width: 48rem) 50vw, 100vw"
+          loading="lazy"
+        />
+      </div>
+      <div class="split__content flow">
+        <p class="eyebrow">Contesto locale</p>
+        <h2 id="location-title">Tra Anzio e Nettuno, come scenario del caso studio</h2>
+        <p>
+          Il riferimento alla costa laziale serve a mostrare come contenuti,
+          navigazione e SEO locale possano lavorare insieme per raccontare
+          un’attività territoriale, senza indicare una sede reale.
+        </p>
+        <a class="text-link" href="/location/">
+          Approfondisci la location immaginaria
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="booking-title">
+    <div class="callout callout--booking container flow">
+      <p class="eyebrow">Percorso interattivo</p>
+      <h2 id="booking-title">Prova una prenotazione, senza prenotare davvero</h2>
+      <p>
+        Il percorso demo mostrerà come progettare un form comprensibile,
+        accessibile e trasparente. Nessuna richiesta viene inviata a un
+        ristorante reale.
+      </p>
+      <a class="button button--primary" href="/prenotazione/">
+        Apri la prenotazione demo
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--study" aria-labelledby="study-title">
+    <div class="callout container flow">
+      <p class="eyebrow eyebrow--light">Dietro il progetto</p>
+      <h2 id="study-title">Dalla strategia alla build statica</h2>
+      <p>
+        Il caso studio documenta le decisioni su architettura Astro,
+        accessibilità, SEO tecnico, performance, gestione immagini e UX per un
+        sito vetrina locale.
+      </p>
+      <a class="button button--light" href="/caso-studio/">
+        Leggi il caso studio frontend
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero,
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .hero {
+    padding-block-start: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .hero__inner,
+  .split {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .hero__content,
+  .split__content {
+    align-self: center;
+  }
+
+  .hero__lead,
+  .section__lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero__media,
+  .split__media {
+    min-width: 0;
+  }
+
+  .hero__image,
+  .section-image {
+    width: 100%;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero__image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .section-image {
+    aspect-ratio: 3 / 2;
+  }
+
+  .section-image--portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .demo-strip {
+    margin-block-end: var(--space-8);
+  }
+
+  .narrow {
+    max-width: 52rem;
+  }
+
+  .section--surface {
+    background-color: var(--color-surface);
+  }
+
+  .section--study {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .section--study h2 {
+    color: var(--color-white);
+  }
+
+  .eyebrow {
+    color: var(--color-coral-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--light {
+    color: var(--color-sand-alt);
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border: 0.125rem solid var(--color-petrol);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+  }
+
+  .button--primary {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .button--secondary {
+    background-color: transparent;
+    color: var(--color-petrol);
+  }
+
+  .button--light {
+    border-color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .text-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .callout {
+    max-width: 52rem;
+  }
+
+  .callout--booking {
+    padding: clamp(var(--space-6), 5vw, var(--space-12));
+    border: 1px solid var(--color-sand-alt);
+    border-inline-start: 0.35rem solid var(--color-gold);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+  }
+
+  @media (min-width: 48rem) {
+    .hero__inner,
+    .split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(var(--space-8), 6vw, var(--space-16));
+    }
+
+    .split--reverse .split__media {
+      grid-column: 2;
+    }
+
+    .split--reverse .split__content {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+</style>

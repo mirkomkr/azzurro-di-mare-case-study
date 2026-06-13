@@ -1,0 +1,302 @@
+---
+import { Image } from "astro:assets";
+import menuOverviewImage from "../assets/images/ristorante-demo/menu/spaghetti-cozze-e-pescato-griglia-demo.webp";
+import pescatoImage from "../assets/images/ristorante-demo/menu/pescato-griglia-demo.webp";
+import polpoImage from "../assets/images/ristorante-demo/menu/polpo-arrosto-demo.webp";
+import spaghettiImage from "../assets/images/ristorante-demo/menu/spaghetti-cozze-demo.webp";
+import tiramisuImage from "../assets/images/ristorante-demo/menu/tiramisu-demo.webp";
+import { imagePlaceholdersById } from "../data/imagePlaceholders.js";
+import { menuCategories } from "../data/menuItems.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const menuImages = {
+  overview: imagePlaceholdersById["menu-overview"],
+  antipasti: imagePlaceholdersById["menu-polpo-arrosto"],
+  primi: imagePlaceholdersById["menu-spaghetti-cozze"],
+  secondi: imagePlaceholdersById["menu-pescato-griglia"],
+  dolci: imagePlaceholdersById["menu-tiramisu"],
+};
+
+const categoryImages = {
+  antipasti: { src: polpoImage, data: menuImages.antipasti },
+  primi: { src: spaghettiImage, data: menuImages.primi },
+  secondi: { src: pescatoImage, data: menuImages.secondi },
+  dolci: { src: tiramisuImage, data: menuImages.dolci },
+};
+---
+
+<BaseLayout
+  title="Menu demo di pesce"
+  description="Menu dimostrativo per un ristorante di pesce contemporaneo: piatti mediterranei, struttura accessibile e contenuti pensati per un sito vetrina locale."
+>
+  <header class="menu-hero">
+    <div class="menu-hero__inner container">
+      <div class="menu-hero__content flow">
+        <p class="eyebrow">Pagina dimostrativa</p>
+        <h1>Menu demo di pesce</h1>
+        <p class="menu-hero__lead">
+          Una proposta breve e leggibile che mostra come organizzare online i
+          contenuti di un ristorante di pesce contemporaneo.
+        </p>
+      </div>
+      <Image
+        class="menu-hero__image"
+        src={menuOverviewImage}
+        alt={menuImages.overview.alt}
+        widths={[480, 720, 800, 960]}
+        sizes="(min-width: 48rem) 42vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </header>
+
+  <section class="menu-intro section" aria-labelledby="menu-intro-title">
+    <div class="narrow container flow">
+      <div class="menu-note">
+        <h2 class="menu-note__title" id="menu-intro-title">Un menu dimostrativo</h2>
+        <p>
+          Questo menu è parte del progetto dimostrativo Azzurro di Mare. I
+          piatti, i prezzi e le descrizioni servono a mostrare come potrebbe
+          essere strutturata una pagina menu chiara, accessibile e leggibile da
+          mobile.
+        </p>
+      </div>
+      <p>
+        Le categorie sono intenzionalmente essenziali: ogni piatto è disponibile
+        come testo HTML, con prezzo immediatamente associato e senza affidare
+        informazioni importanti alle fotografie.
+      </p>
+    </div>
+  </section>
+
+  <div class="menu-sections">
+    {
+      menuCategories.map((category, index) => {
+        const image = categoryImages[category.id];
+
+        return (
+          <section
+            class:list={[
+              "menu-section",
+              { "menu-section--surface": index % 2 === 0 },
+            ]}
+            aria-labelledby={`${category.id}-title`}
+          >
+            <div class="menu-section__inner container">
+              <div class="menu-section__content flow">
+                <h2 id={`${category.id}-title`}>{category.name}</h2>
+                <dl class="menu-list">
+                  {category.items.map((item) => (
+                    <div class="menu-item">
+                      <dt class="menu-item__name">{item.name}</dt>
+                      <dd class="menu-item__price">{item.price}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              {image && (
+                <Image
+                  class="menu-section__image"
+                  src={image.src}
+                  alt={image.data.alt}
+                  widths={[480, 720, 800, 960]}
+                  sizes="(min-width: 48rem) 40vw, 100vw"
+                  loading="lazy"
+                />
+              )}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+
+  <section class="menu-actions section" aria-labelledby="menu-actions-title">
+    <div class="menu-actions__inner container flow">
+      <p class="eyebrow eyebrow--light">Continua il percorso demo</p>
+      <h2 id="menu-actions-title">Dal menu all’esperienza digitale</h2>
+      <p>
+        Esplora il percorso di prenotazione simulato oppure approfondisci le
+        scelte progettuali documentate nel caso studio.
+      </p>
+      <div class="button-group">
+        <a class="button button--light" href="/prenotazione/">
+          Prova la prenotazione demo
+        </a>
+        <a class="button button--outline-light" href="/caso-studio/">
+          Leggi il caso studio
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .menu-hero,
+  .section,
+  .menu-section {
+    padding-block: var(--space-section);
+  }
+
+  .menu-hero {
+    padding-block-start: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .menu-hero__inner,
+  .menu-section__inner {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .menu-hero__content,
+  .menu-section__content {
+    align-self: center;
+  }
+
+  .menu-hero__lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .menu-hero__image,
+  .menu-section__image {
+    width: 100%;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .menu-hero__image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .menu-section__image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .narrow,
+  .menu-actions__inner {
+    max-width: 52rem;
+  }
+
+  .menu-note {
+    padding: var(--space-4);
+    border-inline-start: 0.25rem solid var(--color-gold);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-sand-alt);
+  }
+
+  .menu-note__title {
+    margin-block-end: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+  }
+
+  .menu-section--surface {
+    background-color: var(--color-surface);
+  }
+
+  .menu-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+  }
+
+  .menu-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-block-end: 1px solid var(--color-sand-alt);
+  }
+
+  .menu-item:first-child {
+    border-block-start: 1px solid var(--color-sand-alt);
+  }
+
+  .menu-item__name {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .menu-item__price {
+    margin: 0;
+    color: var(--color-petrol);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+  }
+
+  .menu-actions {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .menu-actions h2 {
+    color: var(--color-white);
+  }
+
+  .eyebrow {
+    color: var(--color-coral-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--light {
+    color: var(--color-sand-alt);
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border: 0.125rem solid var(--color-white);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+  }
+
+  .button--light {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .button--outline-light {
+    background-color: transparent;
+    color: var(--color-white);
+  }
+
+  @media (min-width: 48rem) {
+    .menu-hero__inner,
+    .menu-section__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+      align-items: center;
+      gap: clamp(var(--space-8), 6vw, var(--space-16));
+    }
+
+    .menu-section:nth-child(even) .menu-section__image {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .menu-section:nth-child(even) .menu-section__content {
+      grid-column: 2;
+    }
+  }
+</style>

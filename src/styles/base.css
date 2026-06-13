@@ -1,0 +1,77 @@
+html {
+  background-color: var(--color-background);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  text-rendering: optimizeLegibility;
+}
+
+:where(h1, h2, h3, h4) {
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--font-size-2xl);
+}
+
+h2 {
+  font-size: var(--font-size-xl);
+}
+
+h3 {
+  font-size: var(--font-size-lg);
+}
+
+:where(p, li) {
+  max-width: 70ch;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+:where(button, input, select, textarea) {
+  min-height: var(--touch-target-min);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  border-radius: var(--radius-sm);
+  outline: 0.15rem solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

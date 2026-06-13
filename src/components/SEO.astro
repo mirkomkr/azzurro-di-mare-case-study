@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string | URL;
+  image?: string | URL;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  noindex = false,
+  structuredData,
+} = Astro.props;
+
+const siteName = "Azzurro di Mare";
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const siteBase = Astro.site ?? Astro.url.origin;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteBase);
+const imageUrl = image ? new URL(image, siteBase) : undefined;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+
+{
+  structuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  )
+}

@@ -15,10 +15,28 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.*
+!.env.example
 .env.production
 
 # macOS-specific files
 .DS_Store
+
+# Windows-specific files
+Thumbs.db
+Desktop.ini
+
+# Windows download metadata
+*:Zone.Identifier
+
+# deployment and source assets
+.vercel/
+_originals/
+
+# temporary editor files
+*.swp
+*.swo
+*~
 
 # jetbrains setting folder
 .idea/

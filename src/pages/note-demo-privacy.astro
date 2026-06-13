@@ -1,0 +1,241 @@
+---
+import DemoNotice from "../components/DemoNotice.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Note demo e privacy"
+  description="Informazioni sul progetto dimostrativo Azzurro di Mare: sito fittizio, prenotazioni non reali e trattamento dei dati nel form demo."
+>
+  <header class="notes-hero">
+    <div class="narrow container flow">
+      <p class="eyebrow">Trasparenza del progetto</p>
+      <h1>Note demo e privacy</h1>
+      <p class="notes-hero__lead">
+        Informazioni semplici sul carattere dimostrativo del sito, sul form di
+        prenotazione e sui dati utilizzati durante la simulazione.
+      </p>
+    </div>
+  </header>
+
+  <div class="demo-strip container">
+    <DemoNotice headingId="privacy-demo-notice-title" />
+  </div>
+
+  <section class="section" aria-labelledby="fictional-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Il progetto</p>
+      <h2 id="fictional-title">Azzurro di Mare non è un ristorante reale</h2>
+      <p>
+        Azzurro di Mare è un caso studio frontend realizzato per mostrare come
+        potrebbe essere progettato un sito vetrina per un ristorante locale.
+      </p>
+      <p>
+        Il sito non rappresenta un’attività commerciale operativa e non accetta
+        prenotazioni, ordini o richieste reali.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="purpose-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Scopo del sito</p>
+      <h2 id="purpose-title">Testare e documentare un’esperienza completa</h2>
+      <p>
+        Il progetto serve a esplorare frontend, accessibilità, SEO tecnico, SEO
+        locale, performance, UX e contenuti per attività locali.
+      </p>
+      <p>
+        Le pagine e le interazioni sono costruite per essere realistiche e
+        verificabili, mantenendo sempre chiara la natura dimostrativa.
+      </p>
+      <a class="text-link" href="/caso-studio/">
+        Approfondisci obiettivi e scelte nel caso studio
+      </a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="booking-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Prenotazione demo</p>
+      <h2 id="booking-title">Il form funziona soltanto nel browser</h2>
+      <p>
+        Il form disponibile nella pagina <a href="/prenotazione/">Prenotazione demo</a>
+        simula un flusso realistico, ma non registra alcuna prenotazione.
+      </p>
+      <ul class="check-list">
+        <li>Nessun dato viene inviato a server, database o indirizzi email.</li>
+        <li>Nessun dato viene salvato in localStorage o sessionStorage.</li>
+        <li>La conferma mostrata dopo l’invio è soltanto una simulazione.</li>
+        <li>I valori personali vengono svuotati dopo la conferma demo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="personal-data-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Dati personali</p>
+      <h2 id="personal-data-title">I dati inseriti non vengono trasmessi o conservati</h2>
+      <p>
+        Nome, email, telefono, data e note esistono soltanto temporaneamente
+        nella memoria del browser durante la simulazione.
+      </p>
+      <p>
+        Il form serve esclusivamente a mostrare validazione, messaggi di errore,
+        gestione del focus e conferma accessibile.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="images-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Immagini</p>
+      <h2 id="images-title">Asset locali, ottimizzati e accreditati</h2>
+      <p>
+        Le immagini del sito sono file locali WebP, ottimizzati e gestiti tramite
+        la pipeline immagini di Astro. Il sito non utilizza immagini remote come
+        sorgente dei contenuti.
+      </p>
+      <a class="text-link" href="/crediti-immagini/">
+        Consulta fonti, autori e licenze delle immagini
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="local-seo-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">SEO locale</p>
+      <h2 id="local-seo-title">Anzio e Nettuno sono il contesto del caso studio</h2>
+      <p>
+        I riferimenti ad Anzio e Nettuno definiscono lo scenario narrativo e
+        professionale del progetto. Non indicano la sede di un’attività reale.
+      </p>
+      <ul class="check-list">
+        <li>Non esiste un indirizzo reale associato al ristorante demo.</li>
+        <li>Non viene mostrata una mappa reale o fittizia.</li>
+        <li>Non esiste una scheda Google Business Profile.</li>
+        <li>Non vengono pubblicate recensioni reali o simulate.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="useful-links section" aria-labelledby="links-title">
+    <div class="useful-links__inner container flow">
+      <p class="eyebrow eyebrow--light">Link utili</p>
+      <h2 id="links-title">Verifica il progetto e la sua trasparenza</h2>
+      <div class="button-group">
+        <a class="button button--light" href="/caso-studio/">Leggi il caso studio</a>
+        <a class="button button--outline-light" href="/crediti-immagini/">
+          Consulta i crediti immagini
+        </a>
+        <a class="button button--outline-light" href="/prenotazione/">
+          Prova la prenotazione demo
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notes-hero,
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .notes-hero {
+    padding-block-start: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .narrow,
+  .useful-links__inner {
+    max-width: 52rem;
+  }
+
+  .notes-hero__lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .demo-strip {
+    margin-block-end: var(--space-8);
+  }
+
+  .section--surface {
+    background-color: var(--color-surface);
+  }
+
+  .eyebrow {
+    color: var(--color-coral-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--light {
+    color: var(--color-sand-alt);
+  }
+
+  .check-list {
+    display: grid;
+    gap: var(--space-3);
+    padding-inline-start: var(--space-6);
+  }
+
+  .check-list li::marker {
+    color: var(--color-coral);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .text-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .useful-links {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .useful-links h2 {
+    color: var(--color-white);
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border: 0.125rem solid var(--color-white);
+    border-radius: var(--radius-sm);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover,
+  .text-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+  }
+
+  .button--light {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+  }
+
+  .button--outline-light {
+    background-color: transparent;
+    color: var(--color-white);
+  }
+</style>

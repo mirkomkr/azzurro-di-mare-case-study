@@ -1,0 +1,168 @@
+---
+import { imageCredits } from "../data/imageCredits.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Crediti immagini"
+  description="Fonti e crediti delle immagini usate nel progetto dimostrativo Azzurro di Mare, caso studio frontend per un ristorante di pesce fittizio."
+>
+  <div class="page-section container flow">
+    <h1>Crediti immagini</h1>
+    <p>
+      Le immagini presenti in questo sito sono usate esclusivamente per il
+      progetto dimostrativo Azzurro di Mare. I file sono stati ottimizzati e
+      rinominati per esigenze di performance, accessibilità e organizzazione del
+      caso studio. Quando disponibili, fonte, autore e licenza sono indicati
+      nella tabella seguente.
+    </p>
+
+    <ul class="image-credits" aria-label="Registro crediti immagini">
+      {
+        imageCredits.map((image) => (
+          <li class="image-credit">
+            <article class="image-credit__content flow">
+              <div>
+                <p class="image-credit__eyebrow">Immagine locale</p>
+                <h2 class="image-credit__title">{image.fileName}</h2>
+                <p class="image-credit__folder">{image.folder}</p>
+              </div>
+
+              <dl class="image-credit__details">
+                <div>
+                  <dt>Uso</dt>
+                  <dd>{image.usage}</dd>
+                </div>
+                <div>
+                  <dt>Fonte</dt>
+                  <dd>
+                    {
+                      image.sourceUrl ? (
+                        <a
+                          href={image.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Vedi la fotografia originale su {image.source}
+                        </a>
+                      ) : (
+                        image.source
+                      )
+                    }
+                  </dd>
+                </div>
+                <div>
+                  <dt>Autore</dt>
+                  <dd>
+                    {
+                      image.authorUrl ? (
+                        <a
+                          href={image.authorUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Profilo Unsplash di {image.author}
+                        </a>
+                      ) : (
+                        image.author
+                      )
+                    }
+                  </dd>
+                </div>
+                <div>
+                  <dt>Licenza</dt>
+                  <dd>
+                    {image.licenseUrl ? (
+                      <a
+                        href={image.licenseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Consulta {image.licenseName}
+                      </a>
+                    ) : (
+                      image.licenseName
+                    )}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Testo alternativo</dt>
+                  <dd>{image.alt}</dd>
+                </div>
+                <div class="image-credit__notes">
+                  <dt>Note</dt>
+                  <dd>{image.notes}</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .image-credits {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .image-credit {
+    overflow: hidden;
+    border: 1px solid var(--color-sand-alt);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .image-credit__content {
+    padding: var(--space-6);
+  }
+
+  .image-credit__eyebrow {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .image-credit__title {
+    margin-block-start: var(--space-1);
+    font-family: var(--font-body);
+    font-size: var(--font-size-lg);
+    overflow-wrap: anywhere;
+  }
+
+  .image-credit__folder {
+    margin-block-start: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    overflow-wrap: anywhere;
+  }
+
+  .image-credit__details {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    margin: 0;
+  }
+
+  .image-credit__details div {
+    min-width: 0;
+  }
+
+  .image-credit__details dt {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .image-credit__details dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .image-credit__notes {
+    grid-column: 1 / -1;
+  }
+</style>

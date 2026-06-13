@@ -1,0 +1,87 @@
+---
+interface ImagePlaceholderData {
+  id: string;
+  folder: string;
+  fileName: string;
+  description: string;
+  alt: string;
+  type: "contenutistica" | "decorativa";
+  status: "missing" | "ready";
+}
+
+interface Props {
+  image: ImagePlaceholderData;
+}
+
+const { image } = Astro.props;
+const descriptionId = `image-placeholder-${image.id}`;
+---
+
+<figure
+  class="image-placeholder"
+  aria-labelledby={descriptionId}
+  data-image-status={image.status}
+>
+  <div class="image-placeholder__content">
+    <p class="image-placeholder__eyebrow">Immagine prevista</p>
+    <p class="image-placeholder__file">{image.fileName}</p>
+    <p class="image-placeholder__folder">{image.folder}</p>
+  </div>
+  <figcaption class="image-placeholder__description" id={descriptionId}>
+    {image.description}
+  </figcaption>
+</figure>
+
+<style>
+  .image-placeholder {
+    overflow: hidden;
+    border: 1px dashed var(--color-petrol);
+    border-radius: var(--radius-md);
+    background-color: var(--color-sand-alt);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .image-placeholder__content {
+    display: grid;
+    min-height: clamp(14rem, 38vw, 24rem);
+    place-content: center;
+    padding: var(--space-6);
+    background:
+      linear-gradient(rgb(11 38 48 / 78%), rgb(11 38 48 / 78%)),
+      repeating-linear-gradient(
+        135deg,
+        var(--color-petrol) 0,
+        var(--color-petrol) 1rem,
+        var(--color-navy) 1rem,
+        var(--color-navy) 2rem
+      );
+    color: var(--color-white);
+    text-align: center;
+  }
+
+  .image-placeholder__eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .image-placeholder__file {
+    margin-block-start: var(--space-2);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    overflow-wrap: anywhere;
+  }
+
+  .image-placeholder__folder {
+    margin-block-start: var(--space-2);
+    color: var(--color-sand-alt);
+    font-size: var(--font-size-sm);
+    overflow-wrap: anywhere;
+  }
+
+  .image-placeholder__description {
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+  }
+</style>

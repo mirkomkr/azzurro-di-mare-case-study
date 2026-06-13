@@ -1,0 +1,196 @@
+---
+import { Image } from "astro:assets";
+import bookingImage from "../assets/images/ristorante-demo/booking/tavolo-prenotazione-demo.webp";
+import BookingDemoForm from "../components/BookingDemoForm.vue";
+import DemoNotice from "../components/DemoNotice.astro";
+import { imagePlaceholdersById } from "../data/imagePlaceholders.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const booking = imagePlaceholdersById["booking-table"];
+---
+
+<BaseLayout
+  title="Prenotazione demo"
+  description="Simulazione accessibile di un flusso di prenotazione per un sito ristorante demo. Nessuna prenotazione reale viene registrata."
+>
+  <header class="booking-hero">
+    <div class="booking-hero__inner container">
+      <div class="booking-hero__content flow">
+        <p class="eyebrow">Flusso interattivo dimostrativo</p>
+        <h1>Prenotazione demo</h1>
+        <p class="booking-hero__lead">
+          Una simulazione accessibile che mostra come potrebbe funzionare un form
+          di prenotazione per un sito ristorante, senza inviare o conservare dati.
+        </p>
+      </div>
+      <Image
+        class="booking-hero__image"
+        src={bookingImage}
+        alt={booking.alt}
+        widths={[640, 800, 960, 1200]}
+        sizes="(min-width: 48rem) 48vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </header>
+
+  <div class="demo-strip container">
+    <DemoNotice headingId="booking-demo-notice-title" />
+  </div>
+
+  <section class="section" aria-labelledby="flow-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Come funziona</p>
+      <h2 id="flow-title">Compila, valida e completa una simulazione</h2>
+      <p class="section__lead">
+        Il form riproduce un percorso realistico con campi nativi, validazione
+        frontend e messaggi accessibili. Nessuna richiesta viene inviata,
+        registrata o conservata.
+      </p>
+      <p>
+        Usa esclusivamente dati di prova. Dopo la conferma, i valori inseriti
+        vengono rimossi dal form e resta visibile soltanto il messaggio finale.
+      </p>
+    </div>
+  </section>
+
+  <section class="form-section section" aria-labelledby="form-title">
+    <div class="form-section__inner container flow">
+      <h2 id="form-title">Simula una richiesta</h2>
+      <BookingDemoForm client:visible />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="privacy-title">
+    <div class="narrow container flow">
+      <p class="eyebrow">Privacy demo</p>
+      <h2 id="privacy-title">Nessun dato lascia questa pagina</h2>
+      <p class="section__lead">
+        Il componente non usa API, email, database, localStorage o
+        sessionStorage. I dati esistono soltanto nella memoria temporanea del
+        browser durante la simulazione.
+      </p>
+      <a class="text-link" href="/note-demo-privacy/">
+        Leggi le note demo e privacy
+      </a>
+    </div>
+  </section>
+
+  <section class="study-callout section" aria-labelledby="study-title">
+    <div class="study-callout__inner container flow">
+      <p class="eyebrow eyebrow--light">Dietro il flusso</p>
+      <h2 id="study-title">Accessibilità e interazione documentate</h2>
+      <p>
+        Il caso studio approfondisce le scelte di validazione, focus management,
+        performance e progressive enhancement usate nella prenotazione demo.
+      </p>
+      <a class="button" href="/caso-studio/">Leggi il caso studio frontend</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .booking-hero,
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .booking-hero {
+    padding-block-start: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .booking-hero__inner {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .booking-hero__content {
+    align-self: center;
+  }
+
+  .booking-hero__lead,
+  .section__lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .booking-hero__image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .demo-strip {
+    margin-block-end: var(--space-8);
+  }
+
+  .narrow,
+  .form-section__inner,
+  .study-callout__inner {
+    max-width: 52rem;
+  }
+
+  .form-section {
+    background-color: var(--color-surface);
+  }
+
+  .eyebrow {
+    color: var(--color-coral-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--light {
+    color: var(--color-sand-alt);
+  }
+
+  .text-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .study-callout {
+    background-color: var(--color-petrol);
+    color: var(--color-white);
+  }
+
+  .study-callout h2 {
+    color: var(--color-white);
+  }
+
+  .button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--touch-target-min);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border: 0.125rem solid var(--color-white);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white);
+    color: var(--color-navy);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+  }
+
+  @media (min-width: 48rem) {
+    .booking-hero__inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(var(--space-8), 6vw, var(--space-16));
+    }
+  }
+</style>
