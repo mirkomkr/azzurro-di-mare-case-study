@@ -49,9 +49,23 @@ const isCurrentPage = (href) =>
       </nav>
     </div>
 
-    <p class="site-footer__copyright">
-      &copy; {new Date().getFullYear()} Mirko Passeri. Progetto dimostrativo.
-    </p>
+    <div class="site-footer__credits">
+      <p class="site-footer__credit">
+        Sviluppato con ❤️ da
+        <a
+          href="https://www.mirkopasseri.it"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Portfolio di Mirko Passeri - Sviluppatore & Web Designer (apre in nuova scheda)"
+        >
+          Mirko Passeri
+        </a>
+      </p>
+
+      <p class="site-footer__copyright">
+        &copy; {new Date().getFullYear()} Mirko Passeri. Progetto dimostrativo.
+      </p>
+    </div>
   </div>
 </footer>
 
@@ -93,8 +107,29 @@ const isCurrentPage = (href) =>
     color: var(--color-white);
   }
 
-  .site-footer__copyright {
+  .site-footer__credits {
+    display: grid;
+    gap: var(--space-2);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .site-footer__copyright,
+  .site-footer__credit {
     color: var(--color-sand-alt);
     font-size: var(--font-size-sm);
+  }
+
+  .site-footer__credit a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-sand-alt);
+    text-underline-offset: 0.2em;
+    transition:
+      color 200ms ease,
+      text-decoration-color 200ms ease;
+  }
+
+  .site-footer__credit a:hover {
+    text-decoration-color: var(--color-white);
   }
 </style>
