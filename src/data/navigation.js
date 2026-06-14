@@ -1,9 +1,10 @@
 export const primaryNavigation = [
-  { href: "/", label: "Home" },
-  { href: "/menu/", label: "Menu" },
-  { href: "/ristorante/", label: "Il ristorante" },
-  { href: "/location/", label: "Location" },
-  { href: "/prenotazione/", label: "Prenotazione demo" },
+  { href: '/', label: 'Home' },
+  { href: '/menu/', label: 'Menu' },
+  { href: '/ristorante/', label: 'Il ristorante' },
+  { href: '/location/', label: 'Location' },
+  { href: '/prenotazione/', label: 'Prenotazione' },
+  { href: '/caso-studio/', label: 'Caso studio' },
 ];
 
 export const projectNavigation = [
