@@ -22,6 +22,38 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 const siteBase = Astro.site ?? Astro.url.origin;
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteBase);
 const imageUrl = image ? new URL(image, siteBase) : undefined;
+const websiteId = new URL("/#website", siteBase);
+const webpageId = new URL(`${canonicalUrl.pathname}#webpage`, siteBase);
+const additionalStructuredData = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
+const structuredGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: new URL("/", siteBase),
+      name: siteName,
+      alternateName: "Caso studio Azzurro di Mare",
+      description:
+        "Progetto dimostrativo e caso studio frontend per un sito ristorante fittizio.",
+      inLanguage: "it-IT",
+    },
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: canonicalUrl,
+      name: fullTitle,
+      description,
+      isPartOf: { "@id": websiteId },
+      inLanguage: "it-IT",
+    },
+    ...additionalStructuredData,
+  ],
+};
 ---
 
 <title>{fullTitle}</title>
@@ -38,8 +70,9 @@ const imageUrl = image ? new URL(image, siteBase) : undefined;
 <meta property="og:url" content={canonicalUrl} />
 {imageUrl && <meta property="og:image" content={imageUrl} />}
 
-{
-  structuredData && (
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-  )
-}
+<meta name="twitter:card" content={imageUrl ? "summary_large_image" : "summary"} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredGraph)} />

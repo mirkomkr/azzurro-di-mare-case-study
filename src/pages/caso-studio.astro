@@ -31,11 +31,30 @@ const futureEvolutions = [
   "Report periodici su performance e visibilità organica.",
   "Audit continuativi di SEO e accessibilità.",
 ];
+
+const caseStudyStructuredData = {
+  "@type": "CreativeWork",
+  "@id": new URL("/caso-studio/#creative-work", Astro.site ?? Astro.url.origin),
+  url: new URL("/caso-studio/", Astro.site ?? Astro.url.origin),
+  name: "Azzurro di Mare: caso studio frontend per un sito ristorante demo",
+  description:
+    "Caso studio frontend, accessibilità, SEO locale e performance per un sito vetrina demo dedicato a un ristorante di pesce fittizio.",
+  genre: "Caso studio frontend",
+  inLanguage: "it-IT",
+  isPartOf: { "@id": new URL("/#website", Astro.site ?? Astro.url.origin) },
+  about: [
+    { "@type": "Thing", name: "Frontend development" },
+    { "@type": "Thing", name: "Accessibilità web" },
+    { "@type": "Thing", name: "SEO tecnico" },
+    { "@type": "Thing", name: "Web performance" },
+  ],
+};
 ---
 
 <BaseLayout
   title="Caso studio sito ristorante Anzio e Nettuno"
   description="Caso studio frontend, accessibilità, SEO locale e performance per un sito vetrina demo dedicato a un ristorante di pesce tra Anzio e Nettuno."
+  structuredData={caseStudyStructuredData}
 >
   <header class="study-hero">
     <div class="study-hero__inner container">
