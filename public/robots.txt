@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://azzurro-di-mare-case-study.vercel.app/sitemap-index.xml
+Sitemap: https://azzurro-di-mare.mirkopasseri.it/sitemap-index.xml
